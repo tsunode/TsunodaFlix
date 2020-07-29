@@ -21,11 +21,19 @@ export default createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
+    background-color: #141414
   }
 
   body {
     --bodyPaddingTop: 94px;
     padding-top: var(--bodyPaddingTop);
+  }
+
+  #root {
+    display: flex;
+    flex-direction: column;
+
+    min-height: calc(100vh - var(--bodyPaddingTop));
   }
 
   @media (max-width: 800px) {

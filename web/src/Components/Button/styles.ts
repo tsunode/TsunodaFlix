@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 interface Props{
 	outlined?: boolean;
 }
 
-const Button = styled.button<Props>`
+const Button = styled(Link)<Props>`
   display: inline-block;
 
   border: 1px solid var(--white);

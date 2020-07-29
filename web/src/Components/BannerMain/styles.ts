@@ -1,16 +1,8 @@
-import styled, { StyledComponent } from "styled-components";
+import styled from "styled-components";
 import { PropsWithChildren, ReactElement } from "react";
 
 interface Props {
   backgroundImage: String;
-}
-
-interface ContentAreaContainerProps {
-  ({ children }: PropsWithChildren<{}>): ReactElement;
-  Item({ children }: PropsWithChildren<{}>): ReactElement;
-  Category({ children }: PropsWithChildren<{}>): ReactElement;
-  Description({ children }: PropsWithChildren<{}>): ReactElement;
-  Title({ children }: PropsWithChildren<{}>): ReactElement;
 }
 
 const Item = styled.div`
@@ -22,7 +14,6 @@ const Item = styled.div`
     width: 100%;
   }
 `;
-
 
 const Category = styled.h1`
   font-family: Roboto;
@@ -65,30 +56,25 @@ const Title = styled.h2`
   }
 `;
 
-export const ContentAreaContainer: ContentAreaContainerProps = Object.assign(
-  styled.section`
-    margin-left: 5%;
-    margin-right: 5%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 10;
+const ContentAreaContainer = styled.section`
+  height: 100%;
 
-    @media (max-width: 800px) {
-      padding-top: 100px;
-      flex-direction: column;
-    }
-  `,
-  { Item },
-  { Category },
-  { Description },
-  { Title }
-);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  position: relative;
+  margin-left: 5%;
+  margin-right: 5%;
+  z-index: 10;
 
-export const BannerMainContainer = styled.section`
+  @media (max-width: 800px) {
+    padding-top: 100px;
+    flex-direction: column;
+  }
+`;
+
+const BannerMainContainer = styled.section`
   height: 80vh;
   position: relative;
   color: #fff;
@@ -124,7 +110,7 @@ export const BannerMainContainer = styled.section`
   }
 `;
 
-export const WatchButton = styled.button`
+const WatchButton = styled.button`
   font-family: "Roboto", sans-serif;
   box-sizing: border-box;
   cursor: pointer;
@@ -148,3 +134,13 @@ export const WatchButton = styled.button`
     display: block;
   }
 `;
+
+export {
+  Item,
+  Category,
+  Description,
+  Title,
+  ContentAreaContainer,
+  BannerMainContainer,
+  WatchButton,
+};

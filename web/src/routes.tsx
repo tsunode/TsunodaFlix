@@ -11,7 +11,7 @@ const Routes = () => {
 			<Switch>
 				<Route component={Home} path="/" exact />
 				<Route component={RegisterVideo} path="/cadastro-video" />
-				<Route component={RegisterCategory} path="/cadastro-video" />
+				<Route component={RegisterCategory} path="/cadastro-categoria" />
 				<Route component={ () => (<div>Error</div>)}  />
 			</Switch>
 		</BrowserRouter>

@@ -36,6 +36,11 @@ export default createGlobalStyle`
     min-height: calc(100vh - var(--bodyPaddingTop));
   }
 
+  *, button, input {
+    border: 0;
+    background: none;
+  }
+
   @media (max-width: 800px) {
     --bodyPaddingTop: 40px;
     padding-top: var(--bodyPaddingTop);

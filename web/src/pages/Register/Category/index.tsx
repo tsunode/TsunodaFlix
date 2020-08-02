@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 // components
 import TemplatePage from '../../../Components/TemplatePage';
 import FormField from '../../../Components/FormField';
+import { Button } from '../../../Components/Button';
+
+// hooks
+import useForm from '../../../hooks/useForm';
 
 interface Category {
 	titulo: string;
@@ -19,49 +23,39 @@ const RegisterCategory = () => {
 		color: ''
 	};
 
+	const { handleChangeValue, values, clearForm } = useForm(formDataInitalValue);
+
 	const [categories, setCategories] = useState<Category[]>([]);
-	const [category, setCategory] = useState<Category>(formDataInitalValue);
 
 	useEffect(() => {
-		const URL = 'http://localhost:8080/categorias';
+		const URL = 'http://localhost:8080/categories';
 
 		fetch(URL).then(async (response) => {
-			const categories =  await response.json();
+			const categories = await response.json();
 			setCategories(categories);
 		})
 
-	},[]);
-
-	function handleChangeValue(event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) {
-
-		// get name and value from event.target
-		const { name, value } = event.target;
-
-		setCategory({
-			...category,
-			[name]: value
-		});
-	}
+	}, []);
 
 	function handleRegister(event: FormEvent) {
 
 		event.preventDefault();
 
-		setCategories([...categories, category]);
-		setCategory(formDataInitalValue);
+		setCategories([...categories, values]);
+		clearForm();
 	}
 
 	return (
 
 		<TemplatePage>
-			<h1>Cadastro de Categoria: {category?.titulo}</h1>
+			<h1>Cadastro de Categoria: {values?.titulo}</h1>
 			<form onSubmit={handleRegister}>
 				<FormField
 					label="Nome da Categoria:"
 					type="text"
 					name="titulo"
 					id="titulo"
-					value={category?.titulo}
+					value={values?.titulo}
 					onChange={handleChangeValue}
 				/>
 				<FormField
@@ -69,7 +63,7 @@ const RegisterCategory = () => {
 					type="textarea"
 					name="description"
 					id="description"
-					value={category?.description}
+					value={values?.description}
 					onChange={handleChangeValue}
 				/>
 				<FormField
@@ -77,11 +71,11 @@ const RegisterCategory = () => {
 					type="color"
 					name="color"
 					id="color"
-					value={category?.color}
+					value={values?.color}
 					onChange={handleChangeValue}
 				/>
 
-				<button type="submit">Cadastrar</button>
+				<Button type="submit">Cadastrar</Button>
 			</form>
 
 			<ul>

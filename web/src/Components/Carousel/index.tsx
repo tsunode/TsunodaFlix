@@ -6,23 +6,22 @@ import { Slider, SliderItem } from '../Slider';
 interface Props {
 	ignoreFirstVideo: boolean;
 	category: {
-		titulo: string;
-		link?: string;
-		cor: string;
-		link_extra?: {
+		title: string;
+		color: string;
+		link_extra: {
 			text: string;
 			url: string;
 		};
 		videos: {
-			titulo: string,
+			title: string,
 			url: string,
 		}[];
 	}
 }
 
 const Carousel: React.FC<Props> = ({ ignoreFirstVideo, category }) => {
-	const categoryTitle = category.titulo;
-	const categoryColor = category.cor;
+	const categoryTitle = category.title;
+	const categoryColor = category.color;
 	const categoryExtraLink = category.link_extra;
 	const videos = category.videos;
 	return (
@@ -46,9 +45,9 @@ const Carousel: React.FC<Props> = ({ ignoreFirstVideo, category }) => {
 					}
 
 					return (
-						<SliderItem key={video.titulo}>
+						<SliderItem key={video.title}>
 							<VideoCard
-								videoTitle={video.titulo}
+								videoTitle={video.title}
 								videoURL={video.url}
 								categoryColor={categoryColor}
 							/>

@@ -10,12 +10,15 @@ interface Props {
 	id: string;
 	value: string;
 	onChange: (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => void;
+	suggestions?: string[];
 }
 
 const FormField: React.FC<Props> = (props) => {
 
 	const isTextArea = props.type === 'textarea';
 	const tag = isTextArea ? 'textarea' : 'input';
+
+	const hasSuggestions = props.suggestions !== undefined;
 
 	return (
 		<FormFieldWrapper>
@@ -28,10 +31,24 @@ const FormField: React.FC<Props> = (props) => {
 					id={props.id}
 					value={props.value}
 					onChange={props.onChange}
+					autoComplete="off"
+					list={`datalist${props.id}`}
 				/>
 				<Span>
 					{props.label}
 				</Span>
+				{
+					hasSuggestions &&
+					<datalist id={`datalist${props.id}`}>
+						{
+							props.suggestions?.map((suggestion) => (
+								<option key={suggestion} value={suggestion} >
+									{suggestion}
+								</option>
+							))
+						}
+					</datalist>
+				}
 			</label>
 		</FormFieldWrapper>
 	);

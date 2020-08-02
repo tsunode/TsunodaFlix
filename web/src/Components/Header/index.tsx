@@ -8,7 +8,7 @@ import LogoTsunodaFlix from '../../assets/img/logo_tsunodaflix.png';
 import { Nav, Logo } from './styles';
 
 // components
-import ButtonLink from '../Button';
+import ButtonLink from '../ButtonLink';
 
 const Header = () => {
 	return (
